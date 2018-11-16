@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore, combineReducers } from 'redux';
+import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 import { loadAuthToken } from './local-storage';
@@ -9,7 +9,8 @@ import { setAuthToken, refreshAuthToken } from './actions/auth';
 import books from './reducers/books-reducer';
 import users from './reducers/users-reducer';
 
-/* eslint-disable no-underscore-dangle */
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
   combineReducers({
     form: formReducer,
@@ -17,11 +18,8 @@ const store = createStore(
     protectedData: protectedDataReducer,
     books,
     users
-  }),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(thunk)
-);
-/* eslint-enable */
+  }),composeEnhancer(applyMiddleware(thunk)
+));
 
 const authToken = loadAuthToken();
 if (authToken) {
