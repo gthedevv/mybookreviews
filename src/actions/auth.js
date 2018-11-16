@@ -1,8 +1,8 @@
 import jwtDecode from 'jwt-decode';
 import { SubmissionError } from 'redux-form';
 
-import { API_BASE_URL } from '../config';
-import { normalizeResponseErrors } from './utils';
+import API_BASE_URL from '../config';
+import normalizeResponseErrors from './utils';
 import { saveAuthToken, clearAuthToken } from '../local-storage';
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
@@ -42,7 +42,7 @@ const storeAuthInfo = (authToken, dispatch) => {
   saveAuthToken(authToken);
 };
 
-export const login = (username, password) => (dispatch) => {
+export const login = (username, password) => dispatch => {
   dispatch(authRequest());
   return (
     fetch(`${API_BASE_URL}/auth/login`, {
@@ -55,16 +55,17 @@ export const login = (username, password) => (dispatch) => {
         password
       })
     })
-    // Reject any requests which don't return a 200 status, creating
-    // errors which follow a consistent format
+      // Reject any requests which don't return a 200 status, creating
+      // errors which follow a consistent format
       .then(res => normalizeResponseErrors(res))
       .then(res => res.json())
       .then(({ authToken }) => storeAuthInfo(authToken, dispatch))
-      .catch((err) => {
+      .catch(err => {
         const { code } = err;
-        const message = code === 401
-          ? 'Incorrect username or password'
-          : 'Unable to login, please try again';
+        const message =
+          code === 401
+            ? 'Incorrect username or password'
+            : 'Unable to login, please try again';
         dispatch(authError(err));
         // Could not authenticate, so return a SubmissionError for Redux
         // Form
@@ -90,7 +91,7 @@ export const refreshAuthToken = () => (dispatch, getState) => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(({ authToken }) => storeAuthInfo(authToken, dispatch))
-    .catch((err) => {
+    .catch(err => {
       // We couldn't get a refresh token because our current credentials
       // are invalid or expired, or something else went wrong, so clear
       // them and sign us out
