@@ -40,10 +40,8 @@ class HomeContainer extends Component {
   }
 }
 
-function mapStatetoProps(state){
-  return{
+const mapStateToProps = (state) => ({
     books: state.books
-  }
-}
+});
 
-export default connect(mapStatetoProps)(HomeContainer);
+export default connect(mapStateToProps)(HomeContainer);
