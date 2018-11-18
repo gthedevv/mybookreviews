@@ -18,9 +18,7 @@ export const booksError = error => ({
 });
 
 export const getBooks = (limit, start, order, list) => dispatch => {
-  fetch(`${API_BASE_URL}books/?skip=${start}&limit=${limit}&order=${order}`, {
-    method: 'GET', 
-  })
+  fetch(`${API_BASE_URL}books/?skip=${start}&limit=${limit}&order=${order}`)
     .then(res => {
      if(!res.ok){
        return Promise.reject(res.statusText);
