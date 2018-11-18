@@ -7,6 +7,7 @@ import protectedDataReducer from './reducers/protected-data';
 import { setAuthToken, refreshAuthToken } from './actions/auth';
 
 import books from './reducers/books-reducer';
+import book from './reducers/book-reducer'
 import users from './reducers/users-reducer';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -17,6 +18,7 @@ const store = createStore(
     auth: authReducer,
     protectedData: protectedDataReducer,
     books,
+    book,
     users
   }),composeEnhancer(applyMiddleware(thunk)
 ));
