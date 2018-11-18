@@ -1,35 +1,35 @@
-import API_BASE_URL from '../config'
+import API_BASE_URL from '../config';
 
 export const BOOKS_REQUEST = 'AUTH_REQUEST';
 export const booksRequest = () => ({
-    type: BOOKS_REQUEST
+  type: BOOKS_REQUEST
 });
 
 export const BOOKS_SUCCESS = 'BOOKS_SUCCESS';
 export const booksSuccess = payload => ({
-    type: BOOKS_SUCCESS,
-    payload
+  type: BOOKS_SUCCESS,
+  payload
 });
 
 export const BOOKS_ERROR = 'BOOKS_ERROR';
 export const booksError = error => ({
-    type: BOOKS_ERROR,
-    error
+  type: BOOKS_ERROR,
+  error
 });
 
 export const getBooks = (limit, start, order, list) => dispatch => {
   fetch(`${API_BASE_URL}books/?skip=${start}&limit=${limit}&order=${order}`)
     .then(res => {
-     if(!res.ok){
-       return Promise.reject(res.statusText);
-     } 
-     return res.json();
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      return res.json();
     })
     .then(data => {
-     if (list) {
-      dispatch(booksSuccess([...list, ...data]));
-     } else {
-     dispatch(booksSuccess(data));
-     }
+      if (list) {
+        dispatch(booksSuccess([...list, ...data]));
+      } else {
+        dispatch(booksSuccess(data));
+      }
     });
-}
+};
