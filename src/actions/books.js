@@ -1,7 +1,7 @@
 import API_BASE_URL from '../config'
 
 export const BOOKS_REQUEST = 'AUTH_REQUEST';
-export const bookRequest = () => ({
+export const booksRequest = () => ({
     type: BOOKS_REQUEST
 });
 
