@@ -23,7 +23,7 @@ export default function NavItems() {
       type: 'navItem',
       icon: 'file-text-o',
       text: 'Add Admin',
-      link: '/user/register',
+      link: '/register',
       restricted: false
     },
     {
