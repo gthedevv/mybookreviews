@@ -1,17 +1,17 @@
-import API_BASE_URL from "../config";
+import API_BASE_URL from '../config';
 
-export const BOOK_REQUEST = "AUTH_REQUEST";
+export const BOOK_REQUEST = 'AUTH_REQUEST';
 export const bookRequest = () => ({
   type: BOOK_REQUEST
 });
 
-export const BOOK_SUCCESS = "BOOK_SUCCESS";
+export const BOOK_SUCCESS = 'BOOK_SUCCESS';
 export const bookSuccess = payload => ({
   type: BOOK_SUCCESS,
   payload
 });
 
-export const BOOK_ERROR = "BOOK_ERROR";
+export const BOOK_ERROR = 'BOOK_ERROR';
 export const bookError = error => ({
   type: BOOK_ERROR,
   error
