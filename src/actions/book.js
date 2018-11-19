@@ -36,7 +36,13 @@ export const getBookWithReviewer = id => dispatch => {
           return res.json();
         })
         .then(user => {
-          dispatch(bookSuccess(Object.assign({}, data, user)));
+          const reviewer = {
+            reviewer: user
+          };
+          dispatch(bookSuccess(Object.assign({}, data, reviewer)));
+        })
+        .catch(err => {
+          dispatch(bookError(err));
         });
     });
 };
