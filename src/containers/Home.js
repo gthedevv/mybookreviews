@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import MDSpinner from 'react-md-spinner'
 
 import { getBooks } from '../actions/books'
 
-import BookItem from '../ui-widgets/BookItem'
+import BookItem from '../views/BookItem'
 
 class HomeContainer extends Component {
 
@@ -11,13 +12,24 @@ class HomeContainer extends Component {
     this.props.dispatch(getBooks(3,0,'asc'))
   }
 
-  renderItems = (books) => (
-    books.list ? 
+  renderItems = () => {
+    const { books } = this.props
+
+    if (books.loading) {
+      return <MDSpinner className="spinner" size="28" />;
+    } 
+    
+    if (books.error) {
+      return <strong>{this.props.error}</strong>;
+    }
+    if (books.list !== null) {
+    return (
       books.list.map(item => (
         <BookItem { ...item } key={item._id}/>
       ))
-      :null
-  )
+    );
+  }   
+}
 
   loadMore = () => {
     const { list } = this.props.books
@@ -28,7 +40,7 @@ class HomeContainer extends Component {
   render() {
     return (
       <div>
-        {this.renderItems(this.props.books)}
+        {this.renderItems()}
         <div 
           className="loadmore"
           onClick={this.loadMore}
