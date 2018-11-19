@@ -18,6 +18,7 @@ export const booksError = error => ({
 });
 
 export const getBooks = (limit, start, order, list) => dispatch => {
+  dispatch(booksRequest())
   fetch(`${API_BASE_URL}books/?skip=${start}&limit=${limit}&order=${order}`)
     .then(res => {
       if (!res.ok) {
@@ -31,5 +32,8 @@ export const getBooks = (limit, start, order, list) => dispatch => {
       } else {
         dispatch(booksSuccess(data));
       }
+    })
+    .catch(err => {
+      dispatch(booksError(err));
     });
 };
