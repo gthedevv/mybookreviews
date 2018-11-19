@@ -18,6 +18,7 @@ export const bookError = error => ({
 });
 
 export const getBookWithReviewer = id => dispatch => {
+  dispatch(bookRequest());
   fetch(`${API_BASE_URL}books/book/${id}`)
     .then(res => {
       if (!res.ok) {
