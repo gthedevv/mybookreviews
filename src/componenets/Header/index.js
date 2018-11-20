@@ -32,7 +32,7 @@ export default class Header extends Component {
           onHideNav={() => this.onHideNav()}
         />
         <Link to="/" className="logo">
-          Book Review
+          My Book Reviews
         </Link>
       </header>
     )
