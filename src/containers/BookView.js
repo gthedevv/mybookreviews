@@ -15,7 +15,11 @@ class BookView extends Component {
     const { book } = this.props
 
     if (book.loading) {
-      return <MDSpinner className="spinner" size="28" />;
+      return (
+        <div className="loader">
+          <MDSpinner className="spinner" size="50" />
+        </div>
+      );
     } 
     
     if (book.error) {

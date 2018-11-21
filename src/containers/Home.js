@@ -16,18 +16,31 @@ class HomeContainer extends Component {
     const { books } = this.props
 
     if (books.loading) {
-      return <MDSpinner className="spinner" size="28" />;
+      return (
+        <div className="loader">
+          <MDSpinner className="spinner" size="50" />
+        </div>
+      );
     } 
     
     if (books.error) {
       return <strong>{this.props.error}</strong>;
     }
     if (books.list !== null) {
-    return (
-      books.list.map(item => (
-        <BookItem { ...item } key={item._id}/>
-      ))
-    );
+      let loadMoreButton = (
+        <div key=''
+          className="loadmore"
+          onClick={this.loadMore}
+        >
+          Load More
+        </div>
+      )
+      return ([
+        books.list.map(item => (
+          <BookItem { ...item } key={item._id}/>
+        )),
+        loadMoreButton
+      ]);
   }   
 }
 
@@ -41,12 +54,6 @@ class HomeContainer extends Component {
     return (
       <div>
         {this.renderItems()}
-        <div 
-          className="loadmore"
-          onClick={this.loadMore}
-        >
-          Load More
-        </div>
       </div>
     )
   }
