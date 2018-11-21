@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 export default function BookItem(props) {
-  console.log(props)
   return (
     <Link to={`/books/${props._id}`} className="book_item">
       <div className="book_header">
