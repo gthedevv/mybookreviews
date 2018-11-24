@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import {Redirect} from 'react-router-dom';
 
 
 class UserProfile extends React.Component {
@@ -7,6 +8,11 @@ class UserProfile extends React.Component {
   render() {
 
     const {username, firstName, lastName} = this.props.user
+
+
+    if (!(this.props.loggedIn)) {
+      return <Redirect to="/" />
+    }
 
     return (
       <div className="user_container">
