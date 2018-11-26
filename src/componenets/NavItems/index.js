@@ -49,7 +49,7 @@ class NavItems extends React.Component {
         type: 'navItem',
         icon: 'file-text-o',
         text: 'Add Reviews',
-        link: '/user/add-review',
+        link: '/add-review',
         restricted: false
       }
     ]
