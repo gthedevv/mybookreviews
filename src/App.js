@@ -7,6 +7,7 @@ import BookView from './containers/BookView'
 import Layout from './hoc/layout'
 import RegistrationPage from './componenets/Registration'
 import LoginPage from './componenets/Login'
+import AddReveiw from './componenets/AddReview'
 import UserProfile from './componenets/UserProfile'
 import {refreshAuthToken} from './actions/auth';
 
@@ -48,6 +49,7 @@ stopPeriodicRefresh() {
           <Route exact path="/register" component={RegistrationPage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/user" component={UserProfile} />
+          <Route exact path="/add-review" component={AddReveiw}/>
         </Switch>
       </Layout>
     );
