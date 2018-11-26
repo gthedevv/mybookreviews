@@ -11,7 +11,7 @@ class UserProfile extends React.Component {
 
 
     if (!(this.props.loggedIn)) {
-      return <Redirect to="/" />
+      return <Redirect to="/login" />
     }
 
     return (
