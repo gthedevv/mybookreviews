@@ -9,6 +9,7 @@ import RegistrationPage from './componenets/Registration'
 import LoginPage from './componenets/Login'
 import AddReveiw from './componenets/AddReview'
 import UserProfile from './componenets/UserProfile'
+import UserPosts from './componenets/UserPosts/'
 import {refreshAuthToken} from './actions/auth';
 
 
@@ -50,6 +51,7 @@ stopPeriodicRefresh() {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/user" component={UserProfile} />
           <Route exact path="/add-review" component={AddReveiw}/>
+          <Route exact path="/user-reviews" component={UserPosts}/>
         </Switch>
       </Layout>
     );
