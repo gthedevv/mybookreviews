@@ -8,7 +8,7 @@ import { setAuthToken, refreshAuthToken } from './actions/auth';
 
 import books from './reducers/books-reducer';
 import book from './reducers/book-reducer'
-import users from './reducers/users-reducer';
+import newReview from './reducers/new-review-reducer'
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -19,7 +19,7 @@ const store = createStore(
     protectedData: protectedDataReducer,
     books,
     book,
-    users
+    newReview
   }),composeEnhancer(applyMiddleware(thunk)
 ));
 
