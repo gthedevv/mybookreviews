@@ -16,11 +16,15 @@ export class AddReview extends React.Component {
           .dispatch(addNewReveiw(newReview))
   }
   
-
   render() {
-    console.log(this.props.user._id)
     if (!(this.props.loggedIn)) {
       return <Redirect to="/login" />
+    }
+
+    const { bookId } = this.props.newBook.book
+    
+    if(bookId !== undefined || null) {
+        return <Redirect to={`/books/${bookId}`} />
     }
 
       return (
