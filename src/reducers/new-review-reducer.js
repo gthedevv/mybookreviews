@@ -1,7 +1,7 @@
 import { NEW_REVIEW_REQUEST, NEW_REVIEW_SUCCESS } from '../actions/new-review';
 
 const initialState = {
-  list: null,
+  book: {},
   loading: false,
   error: null
 };
@@ -15,7 +15,7 @@ export default function reducer(state = initialState, action) {
   } else if (action.type === NEW_REVIEW_SUCCESS) {
     return Object.assign({}, state, {
       loading: false,
-      list: action.payload
+      book: action.payload
     });
   }
   return state;
