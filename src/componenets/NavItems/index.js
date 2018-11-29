@@ -42,7 +42,7 @@ class NavItems extends React.Component {
         type: 'navItem',
         icon: 'file-text-o',
         text: 'My Reviews',
-        link: '/user/user-reviews',
+        link: '/user-reviews',
         restricted: false
       },
       {
