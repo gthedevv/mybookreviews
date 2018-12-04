@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {Redirect} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 
 class UserProfile extends React.Component {
@@ -15,7 +15,7 @@ class UserProfile extends React.Component {
     }
 
     return (
-      <div className="user_container">
+      <div className="user_container rl_container">
         <div className="avatar">
           <img src="/images/avatar.png" alt="avatar"/>
         </div>
@@ -30,6 +30,7 @@ class UserProfile extends React.Component {
             {username}
           </div>
         </div>
+        <button><Link to="/add-review">Add a review</Link></button>
       </div>
     )
   }
