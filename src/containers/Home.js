@@ -9,7 +9,7 @@ import BookItem from '../views/BookItem'
 class HomeContainer extends Component {
 
   componentDidMount() {
-    this.props.dispatch(getBooks(3,0,'asc'))
+    this.props.dispatch(getBooks(10,0,'asc'))
   }
 
   renderItems = () => {
