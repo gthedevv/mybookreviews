@@ -19,10 +19,12 @@ export default class Header extends Component {
       <header>
         <div className="open_nav">
           <FontAwesome name="bars" 
+            className="bars"
             style={{
               color: '#ffffff',
               paddingTop: '20px',
               paddingLeft: '15px',
+              paddingRight: '20px',
               cursor: 'pointer'
             }}
             onClick={() => this.setState({showNav: true})}
