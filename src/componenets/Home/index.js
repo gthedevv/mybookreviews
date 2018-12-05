@@ -8,14 +8,9 @@ import HomeContainer from '../../containers/Home'
   renderAppInfo() {
     if(!(this.props.loggedIn)) {
       return (
-        <div>
-          <section>
-            <h2>Welcome to My Book Reviews</h2>
-            <p>The one simple and easy to use app that lets you share your book reviews with the world!</p>
-          </section>
-          <section>
-            <h2>How To Use</h2>
-            <p>Select the menu button on the top left and register for an account. Once your account is created you can start writing your own reveiws!</p>
+        <div className="rl_container">
+          <section className="intro">
+            <p>Share your book reviews with the world!</p>
           </section>
         </div>
       )
