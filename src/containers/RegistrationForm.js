@@ -19,34 +19,47 @@ export class RegistrationForm extends React.Component {
     render() {
         return (
             <form
-                className="login-form"
+                className="login-form .rl_container"
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
-                <label htmlFor="firstName">First name</label>
-                <Field component={Input} type="text" name="firstName" />
-                <label htmlFor="lastName">Last name</label>
-                <Field component={Input} type="text" name="lastName" />
-                <label htmlFor="username">Email</label>
+                <label htmlFor="firstName" hidden>First name</label>
+                <Field 
+                    component={Input} 
+                    type="text" 
+                    name="firstName" 
+                    placeholder="First Name"
+                />
+                <label htmlFor="lastName" hidden>Last name</label>
+                <Field 
+                    component={Input} 
+                    type="text" 
+                    name="lastName" 
+                    placeholder="Last Name"
+                />
+                <label htmlFor="username" hidden>Email</label>
                 <Field
                     component={Input}
                     type="text"
                     name="username"
-                    validate={[required, nonEmpty, isTrimmed]}
+                    validate={[required, nonEmpty, isTrimmed]} 
+                    placeholder="Email"
                 />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password" hidden>Password</label>
                 <Field
                     component={Input}
                     type="password"
                     name="password"
                     validate={[required, passwordLength, isTrimmed]}
+                    placeholder="Password"
                 />
-                <label htmlFor="passwordConfirm">Confirm password</label>
+                <label htmlFor="passwordConfirm" hidden>Confirm password</label>
                 <Field
                     component={Input}
                     type="password"
                     name="passwordConfirm"
                     validate={[required, nonEmpty, matchesPassword]}
+                    placeholder="Confirm Password"
                 />
                 <button
                     type="submit"
