@@ -13,6 +13,10 @@ class UserPosts extends Component {
     }
   }
 
+  toAddReview(){
+    this.props.history.push('/add-review');
+  }
+
   renderReviews = () => {
     const { reviews } = this.props;
 
@@ -44,6 +48,8 @@ class UserPosts extends Component {
     return (
       <div className="user_posts">
         <h4>Your Reviews:</h4>
+        <button type="button" onClick={() => this.toAddReview()}>Add a review</button>
+        
         <table>
           <thead>
             <tr>
