@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect }  from 'react-router-dom';
-import { Field, reduxForm, focus, initialize } from 'redux-form';
+import { Field, reduxForm, focus } from 'redux-form';
 import Input from '../input';
 import { required, nonEmpty, isTrimmed } from '../../validators';
 import editReveiw from '../../actions/edit-review'
@@ -11,7 +11,6 @@ export class EditReview extends React.Component {
 
   componentDidMount(){
     this.props.dispatch(getBookWithReviewer(this.props.match.params.id))
-    this.props.dispatch(initialize())
   }
 
   onSubmit(values) {
@@ -113,5 +112,6 @@ const connectToComponenet = connect(mapStateToProps)(EditReview)
 
 export default reduxForm({
   form: 'editReview',
-  onSubmitFail: (errors, dispatch) => dispatch(focus('editReview', Object.keys(errors)[0]))
+  onSubmitFail: (errors, dispatch) => dispatch(focus('editReview', Object.keys(errors)[0])),
+  enableReinitialize: true
 })(connectToComponenet);
