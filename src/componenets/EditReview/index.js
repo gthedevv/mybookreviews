@@ -4,7 +4,7 @@ import { Redirect }  from 'react-router-dom';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from '../input';
 import { required, nonEmpty, isTrimmed } from '../../validators';
-import editReveiw from '../../actions/edit-review'
+import { editReview, clearEditBook, deleteReview } from '../../actions/edit-review'
 import { getBookWithReviewer } from '../../actions/book'
 
 export class EditReview extends React.Component {
@@ -13,19 +13,34 @@ export class EditReview extends React.Component {
     this.props.dispatch(getBookWithReviewer(this.props.match.params.id))
   }
 
+  componentWillUnmount(){
+      this.props.dispatch(clearEditBook());
+  }
+
+  deleteReview(bookId){
+    this.props.dispatch(deleteReview(bookId));
+    this.props.history.push('/user-reviews');
+  }
+
   onSubmit(values) {
       const reviewerId = this.props.user._id
       const {review, name, author, rating, price, pages} = values;
-      const editedReview = {review, name, author, rating, price, pages, reviewerId};
+      const { _id: id } = this.props.initialValues
+      const editedReview = {id, review, name, author, rating, price, pages, reviewerId};
       return this.props
-          .dispatch(editReveiw(editedReview))
+          .dispatch(editReview(editedReview))
   }
   
   render() {
     if (!(this.props.loggedIn)) {
       return <Redirect to="/login" />
     }
-    // console.log(this.props.book)
+   
+    if(this.props.editedBook !== undefined || null) {
+        const { _id: bookId } = this.props.editedBook
+        return <Redirect to={`/books/${bookId}`} />
+    }
+
       return (
         <div className="rl_container article">
           <form
@@ -36,7 +51,6 @@ export class EditReview extends React.Component {
               <h2>Edit Review</h2>
               <label htmlFor="name" hidden>Title</label>
               <Field 
-                  defaultValue="Test"
                   component={Input} 
                   type="text" 
                   name="name"
@@ -64,7 +78,7 @@ export class EditReview extends React.Component {
                   className="form_element"
                   name="rating"
                   placeholder="Rating"
-                  validate={[required, nonEmpty]}
+                  validate={[required]}
                   ref={input => (this.input = input)}
               >
                 <option></option>
@@ -93,7 +107,10 @@ export class EditReview extends React.Component {
                   disabled={this.props.pristine || this.props.submitting}>
                   Submit
               </button>
-              <button>
+              <button type="button" disabled={this.props.pristine || this.props.submitting} onClick={this.props.reset}>
+                Undo Changes
+              </button>
+              <button type="button" onClick={() => this.deleteReview(this.props.bookId)}>
                   Delete
               </button>
           </form>
@@ -102,16 +119,21 @@ export class EditReview extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  loggedIn: state.auth.currentUser !== null,
-  user: state.auth.currentUser || {},
-  initialValues: state.book.data
-});
 
-const connectToComponenet = connect(mapStateToProps)(EditReview)
+let InitializeFromStateForm = reduxForm({
+    form: 'editReview',
+    enableReinitialize : true,
+    onSubmitFail: (errors, dispatch) => dispatch(focus('editReview', Object.keys(errors)[0])),
+})(EditReview);
 
-export default reduxForm({
-  form: 'editReview',
-  onSubmitFail: (errors, dispatch) => dispatch(focus('editReview', Object.keys(errors)[0])),
-  enableReinitialize: true
-})(connectToComponenet);
+InitializeFromStateForm = connect(
+  state => ({
+    loggedIn: state.auth.currentUser !== null,
+    user: state.auth.currentUser || {},
+    editedBook: state.editReview.book.updatedBook,
+    bookId: state.book.data._id,
+    initialValues: state.book.data
+  })
+)(InitializeFromStateForm);
+
+export default InitializeFromStateForm;
