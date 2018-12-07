@@ -14,7 +14,7 @@ export const newReviewSuccess = payload => ({
   payload
 });
 
-const addNewReview = review => (dispatch, getState) =>{
+const addNewReview = (review, history) => (dispatch, getState) =>{
   dispatch(newReviewRequest());
   const authToken = getState().auth.authToken;
   fetch(`${API_BASE_URL}books/book`, {
@@ -27,7 +27,11 @@ const addNewReview = review => (dispatch, getState) =>{
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(res => dispatch(newReviewSuccess(res)))
+    .then(res => {
+      dispatch(newReviewSuccess(res))
+      console.log(res);
+      history.push(`/books/${res.bookId}`)
+    })
     .catch(err => {
       const { reason, message, location } = err;
       if (reason === 'ValidationError') {
