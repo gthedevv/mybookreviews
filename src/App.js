@@ -46,8 +46,8 @@ stopPeriodicRefresh() {
     return (
       <Layout>
         <Switch>
-          <Route path="/" exact component={Home}/>
-          <Route path="/books/:id" exact component={BookView}/>
+          <Route exact path="/"  component={Home}/>
+          <Route exact path="/books/:id"  component={BookView}/>
           <Route exact path="/register" component={RegistrationPage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/user" component={UserProfile} />
