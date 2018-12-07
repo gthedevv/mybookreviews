@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect, Link }  from 'react-router-dom';
 import { getUserReviews } from '../../actions/user-reviews';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
 import MDSpinner from 'react-md-spinner'
 
 class UserPosts extends Component {
@@ -13,27 +13,11 @@ class UserPosts extends Component {
     }
   }
 
-  toAddReview(){
-    this.props.history.push('/add-review');
-  }
 
   renderReviews = () => {
-    const { reviews } = this.props;
-
-    if (reviews.loading) {
+    if (this.props.reviews.list !== null) {
       return (
-        <div className="loader">
-          <MDSpinner className="spinner" size="50" />
-        </div>
-      );
-    } 
-    
-    if (reviews.error) {
-      return <strong>{this.props.error}</strong>;
-    }
-    if (reviews.list !== null) {
-      return (
-        reviews.list.map(item => (
+        this.props.reviews.list.map(item => (
           <tr key={item._id}>
             <td><Link to={`/edit-review/${item._id}`}>{item.name}</Link></td>
             <td>{item.author}</td>
@@ -45,11 +29,35 @@ class UserPosts extends Component {
   }
 
   render() {
+    if (!(this.props.loggedIn)) {
+      return <Redirect to="/login" />
+    }
+
+    if (this.props.reviews.loading) {
+      return (
+        <div className="loader">
+          <MDSpinner className="spinner" size="50" />
+        </div>
+      );
+    } 
+
+    const noReviews = (<div className="user_posts">
+                        <h4>You have no reviews!</h4>
+                        <Link to={'/add-review'}><button type="button">Add a review</button></Link>
+                      </div>)
+
+    if (this.props.reviews.list.length < 1) {
+      return noReviews;
+    }
+
+    if (this.props.reviews.error) {
+      return <strong>{this.props.error}</strong>;
+    }
+
     return (
       <div className="user_posts">
         <h4>Your Reviews:</h4>
-        <button type="button" onClick={() => this.toAddReview()}>Add a review</button>
-        
+        <Link to={'/add-review'}><button type="button">Add Reveiw</button></Link>
         <table>
           <thead>
             <tr>
@@ -68,7 +76,8 @@ class UserPosts extends Component {
 }
 
 const mapStateToProps = state => ({
-  reviews: state.userReviews,
+  loggedIn: state.auth.currentUser !== null,
+  reviews: state.userReviews || null,
   user: state.auth.currentUser 
 })
 
