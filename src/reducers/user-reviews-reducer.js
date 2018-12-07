@@ -1,7 +1,7 @@
 import { USER_REVIEWS_REQUEST, USER_REVIEWS_SUCCESS, USER_REVIEWS_ERROR } from '../actions/user-reviews';
 
 const initialState = {
-  list: null,
+  list: [],
   loading: false,
   error: null
 };
