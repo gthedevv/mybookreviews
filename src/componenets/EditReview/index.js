@@ -10,16 +10,15 @@ import { getBookWithReviewer } from '../../actions/book'
 export class EditReview extends React.Component {
 
   componentDidMount(){
-    this.props.dispatch(getBookWithReviewer(this.props.match.params.id))
+   return this.props.dispatch(getBookWithReviewer(this.props.match.params.id))
   }
 
   componentWillUnmount(){
-      this.props.dispatch(clearEditBook());
+     return this.props.dispatch(clearEditBook());
   }
 
   deleteReview(bookId){
-    this.props.dispatch(deleteReview(bookId));
-    this.props.history.push('/user-reviews');
+    return this.props.dispatch(deleteReview(bookId, this.props.history));
   }
 
   onSubmit(values) {
@@ -27,19 +26,16 @@ export class EditReview extends React.Component {
       const {review, name, author, rating, price, pages} = values;
       const { _id: id } = this.props.initialValues
       const editedReview = {id, review, name, author, rating, price, pages, reviewerId};
-      return this.props
-          .dispatch(editReview(editedReview))
+      this.props.dispatch(editReview(editedReview, this.props.history))
+      return this.props.history.push(`/books/${this.props.match.params.id}`)
   }
   
   render() {
     if (!(this.props.loggedIn)) {
       return <Redirect to="/login" />
     }
-   
-    if(this.props.editedBook !== undefined || null) {
-        const { _id: bookId } = this.props.editedBook
-        return <Redirect to={`/books/${bookId}`} />
-    }
+
+
 
       return (
         <div className="rl_container article">
@@ -110,7 +106,7 @@ export class EditReview extends React.Component {
               <button type="button" disabled={this.props.pristine || this.props.submitting} onClick={this.props.reset}>
                 Undo Changes
               </button>
-              <button type="button" onClick={() => this.deleteReview(this.props.bookId)}>
+              <button type="button" onClick={() => this.deleteReview(this.props.match.params.id)}>
                   Delete
               </button>
           </form>
@@ -130,8 +126,7 @@ InitializeFromStateForm = connect(
   state => ({
     loggedIn: state.auth.currentUser !== null,
     user: state.auth.currentUser || {},
-    editedBook: state.editReview.book.updatedBook,
-    bookId: state.book.data._id,
+    editedBook: state.editReview,
     initialValues: state.book.data
   })
 )(InitializeFromStateForm);
