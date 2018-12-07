@@ -34,7 +34,7 @@ export const deleteReviewError = () => ({
     type: DELETE_REVIEW_ERROR
   });
 
-export const editReview = review => (dispatch, getState) =>{
+export const editReview = (review, history) => (dispatch, getState) =>{
   dispatch(editReviewRequest());
   const authToken = getState().auth.authToken;
   fetch(`${API_BASE_URL}books/book/${review.id}`, {
@@ -47,7 +47,10 @@ export const editReview = review => (dispatch, getState) =>{
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(res => dispatch(editReviewSuccess(res)))
+    .then(res => {
+      dispatch(editReviewSuccess(res))
+      history.push(`/books/${review.id}`)
+    })
     .catch(err => {
       const { reason, message, location } = err;
       if (reason === 'ValidationError') {
@@ -61,20 +64,22 @@ export const editReview = review => (dispatch, getState) =>{
     });
 }
 
-export const deleteReview = bookId => (dispatch, getState) =>{
+export const deleteReview = (bookId, history) => (dispatch, getState) =>{
     dispatch(deleteReviewRequest());
     const authToken = getState().auth.authToken;
-    fetch(`${API_BASE_URL}books/book/${bookId}`, {
+    return fetch(`${API_BASE_URL}books/book/${bookId}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
         Authorization: `Bearer ${authToken}`
       }
     })
-    .then(res => res.json())
-    .then(res => dispatch(deleteReviewSuccess(res)))
+    .then(() => {
+      dispatch(deleteReviewSuccess())
+      history.push('/user-reviews')
+    })
     .catch(err => {
-        dispatch(deleteReviewError(err));
-      });
+      dispatch(deleteReviewError(err));
+    });
 }
 
