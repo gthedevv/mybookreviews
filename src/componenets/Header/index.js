@@ -25,6 +25,7 @@ export default class Header extends Component {
               paddingTop: '20px',
               paddingLeft: '15px',
               paddingRight: '20px',
+              paddingBottom: '20px',
               cursor: 'pointer'
             }}
             onClick={() => this.setState({showNav: true})}
