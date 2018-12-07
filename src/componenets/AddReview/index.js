@@ -13,18 +13,12 @@ export class AddReview extends React.Component {
       const {review, name, author, rating, price, pages} = values;
       const newReview = {review, name, author, rating, price, pages, reviewerId};
       return this.props
-          .dispatch(addNewReveiw(newReview))
+          .dispatch(addNewReveiw(newReview, this.props.history))
   }
   
   render() {
     if (!(this.props.loggedIn)) {
       return <Redirect to="/login" />
-    }
-
-    const { bookId } = this.props.newBook.book
-    
-    if(bookId !== undefined || null) {
-        return <Redirect to={`/books/${bookId}`} />
     }
 
       return (
@@ -107,8 +101,7 @@ export class AddReview extends React.Component {
 
 const mapStateToProps = (state) => ({
   loggedIn: state.auth.currentUser !== null,
-  user: state.auth.currentUser || {},
-  newBook: state.newReview
+  user: state.auth.currentUser || {}
 });
 
 const connectToComponenet = connect(mapStateToProps)(AddReview)
