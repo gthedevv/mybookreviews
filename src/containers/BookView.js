@@ -16,8 +16,8 @@ class BookView extends Component {
 
     if (book.loading) {
       return (
-        <div className="loader">
-          <MDSpinner className="spinner" size="50" />
+        <div className='loader'>
+          <MDSpinner className='spinner' size='50' />
         </div>
       );
     } 

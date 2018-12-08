@@ -11,15 +11,15 @@ class UserProfile extends React.Component {
 
 
     if (!(this.props.loggedIn)) {
-      return <Redirect to="/login" />
+      return <Redirect to='/login' />
     }
 
     return (
-      <div className="user_container rl_container">
-        <div className="avatar">
-          <img src="/images/avatar.png" alt="avatar"/>
+      <div className='user_container rl_container'>
+        <div className='avatar'>
+          <img src='/images/avatar.png' alt='avatar'/>
         </div>
-        <div className="info">
+        <div className='info'>
           <div>
             {firstName}
           </div>

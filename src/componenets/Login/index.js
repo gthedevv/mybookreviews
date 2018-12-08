@@ -15,42 +15,42 @@ export class LoginForm extends React.Component {
         let error;
         if (this.props.error) {
             error = (
-                <div className="form-error error" aria-live="polite">
+                <div className='form-error error' aria-live='polite'>
                     {this.props.error}
                 </div>
             );
         }
 
         if (this.props.loggedIn) {
-          return <Redirect to="/user" />;
+          return <Redirect to='/user' />;
       }
 
         return (
-          <div className="rl_container">
+          <div className='rl_container'>
             <form
-                className="login-form"
+                className='login-form'
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
                 {error}
                 <h2>Log In</h2>
-                <label htmlFor="email" hidden>Email</label>
+                <label htmlFor='email' hidden>Email</label>
                 <Field
-                    className="form_element"
+                    className='form_element'
                     component={Input}
-                    type="text"
-                    name="email"
-                    id="email"
-                    placeholder="Enter your email"
+                    type='text'
+                    name='email'
+                    id='email'
+                    placeholder='Enter your email'
                     validate={[required, nonEmpty]}
                 />
-                <label htmlFor="password" hidden>Password</label>
+                <label htmlFor='password' hidden>Password</label>
                 <Field
                     component={Input}
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Enter your password"
+                    type='password'
+                    name='password'
+                    id='password'
+                    placeholder='Enter your password'
                     validate={[required, nonEmpty]}
                 />
                 <button disabled={this.props.pristine || this.props.submitting}>

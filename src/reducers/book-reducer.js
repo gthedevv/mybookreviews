@@ -1,4 +1,4 @@
-import { BOOK_REQUEST, BOOK_SUCCESS, BOOK_ERROR } from "../actions/book";
+import { BOOK_REQUEST, BOOK_SUCCESS, BOOK_ERROR } from '../actions/book';
 
 const initialState = {
   data: null,

@@ -17,9 +17,9 @@ export default class Header extends Component {
   render() {
     return (
       <header>
-        <div className="open_nav">
-          <FontAwesome name="bars" 
-            className="bars"
+        <div className='open_nav'>
+          <FontAwesome name='bars' 
+            className='bars'
             style={{
               color: '#ffffff',
               paddingTop: '20px',
@@ -35,7 +35,7 @@ export default class Header extends Component {
           showNav={this.state.showNav}
           onHideNav={() => this.onHideNav()}
         />
-        <Link to="/" className="logo">
+        <Link to='/' className='logo'>
           My Book Reviews
         </Link>
       </header>

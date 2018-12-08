@@ -17,8 +17,8 @@ class HomeContainer extends Component {
 
     if (books.loading) {
       return (
-        <div className="loader">
-          <MDSpinner className="spinner" size="50" />
+        <div className='loader'>
+          <MDSpinner className='spinner' size='50' />
         </div>
       );
     } 
@@ -29,7 +29,7 @@ class HomeContainer extends Component {
     if (books.list !== null) {
       let loadMoreButton = (
         <div key=''
-          className="loadmore"
+          className='loadmore'
           onClick={this.loadMore}
         >
           Load More

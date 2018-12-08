@@ -8,8 +8,8 @@ import HomeContainer from '../../containers/Home'
   renderAppInfo() {
     if(!(this.props.loggedIn)) {
       return (
-        <div className="rl_container">
-          <section className="intro">
+        <div className='rl_container'>
+          <section className='intro'>
             <p>Share your book reviews with the world!</p>
           </section>
         </div>

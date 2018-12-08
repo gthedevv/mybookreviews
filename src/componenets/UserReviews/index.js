@@ -21,7 +21,7 @@ class UserPosts extends Component {
           <tr key={item._id}>
             <td><Link to={`/edit-review/${item._id}`}>{item.name}</Link></td>
             <td>{item.author}</td>
-            <td>{moment(item.createdAt).format("MM/DD/YY")}</td>
+            <td>{moment(item.createdAt).format('MM/DD/YY')}</td>
           </tr>
         ))
       );
@@ -30,20 +30,20 @@ class UserPosts extends Component {
 
   render() {
     if (!(this.props.loggedIn)) {
-      return <Redirect to="/login" />
+      return <Redirect to='/login' />
     }
 
     if (this.props.reviews.loading) {
       return (
-        <div className="loader">
-          <MDSpinner className="spinner" size="50" />
+        <div className='loader'>
+          <MDSpinner className='spinner' size='50' />
         </div>
       );
     } 
 
-    const noReviews = (<div className="user_posts">
+    const noReviews = (<div className='user_posts'>
                         <h4>You have no reviews!</h4>
-                        <Link to={'/add-review'}><button type="button">Add a review</button></Link>
+                        <Link to={'/add-review'}><button type='button'>Add a review</button></Link>
                       </div>)
 
     if (this.props.reviews.list.length < 1) {
@@ -55,9 +55,9 @@ class UserPosts extends Component {
     }
 
     return (
-      <div className="user_posts">
+      <div className='user_posts'>
         <h4>Your Reviews:</h4>
-        <Link to={'/add-review'}><button type="button">Add Reveiw</button></Link>
+        <Link to={'/add-review'}><button type='button'>Add Reveiw</button></Link>
         <table>
           <thead>
             <tr>
