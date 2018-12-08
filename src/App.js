@@ -17,32 +17,32 @@ import { refreshAuthToken } from './actions/auth';
 export class App extends React.Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.loggedIn && this.props.loggedIn) {
-        this.startPeriodicRefresh();
+      this.startPeriodicRefresh();
     } else if (prevProps.loggedIn && !this.props.loggedIn) {
-        this.stopPeriodicRefresh();
+      this.stopPeriodicRefresh();
     }
-}
+  }
 
-componentWillUnmount() {
+  componentWillUnmount() {
     this.stopPeriodicRefresh();
-}
+  }
 
-startPeriodicRefresh() {
+  startPeriodicRefresh() {
     this.refreshInterval = setInterval(
-        () => this.props.dispatch(refreshAuthToken()),
-        60 * 60 * 1000 // One hour
+      () => this.props.dispatch(refreshAuthToken()),
+      60 * 60 * 1000 // One hour
     );
-}
+  }
 
-stopPeriodicRefresh() {
+  stopPeriodicRefresh() {
     if (!this.refreshInterval) {
-        return;
+      return;
     }
 
     clearInterval(this.refreshInterval);
-}
+  }
 
-  render() {  
+  render() {
     return (
       <Layout>
         <Switch>
@@ -54,11 +54,11 @@ stopPeriodicRefresh() {
           <Route exact path='/add-review' component={AddReveiw} />
           <Route exact path='/user-reviews' component={UserReviews} />
           <Route exact path='/edit-review/:id' component={EditReview} />
+          <Route component={NotFound} />
         </Switch>
       </Layout>
     );
   }
-  
 }
 
 const mapStateToProps = state => ({
