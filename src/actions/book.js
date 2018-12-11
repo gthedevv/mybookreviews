@@ -28,7 +28,7 @@ export const getBookWithReviewer = id => dispatch => {
     })
     .then(data => {
       const { reviewerId } = data;
-      fetch(`${API_BASE_URL}users/getReviewer/${reviewerId}`)
+      fetch(`${API_BASE_URL}/users/getReviewer/${reviewerId}`)
         .then(res => {
           if (!res.ok) {
             return Promise.reject(res.statusText);
