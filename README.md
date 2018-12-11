@@ -1,44 +1,56 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+My Book Reviews
+================
 
-## Available Scripts
+Checkout the [App](https://my-bookreviews.herokuapp.com)!
 
-In the project directory, you can run:
+Summary
+-------
+This app enbales users to post reviews about books that they have read, and share it on the landing page so that other's can see what the reviewer's opinon is for that book.
 
-### `npm start`
+Server-Side API
+----------------
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The API used for this app holds all of the business logic needed in order for it to function. This includes:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+* Registration 
+* Logging In
+* Adding / Editing / Deleting a review
+* Seeing other user's reviews
 
-### `npm test`
+App Gallery
+------------
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Homepage / Landing Page
+![Homepage / Landing Page](screenshots/Homepage-Landing-Screen.PNG)
 
-### `npm run build`
+Book Review
+![Book Review](screenshots/Book-Review.PNG)
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Registration / Log In
+![Registration](screenshots/Registration.PNG)
+![Log In](screenshots/Login.PNG)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Profile
+![User Profile](screenshots/User-Profile.PNG)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+User's list of reviews
+![List of reviews posted by user](screenshots/User's-reviews.PNG)
 
-### `npm run eject`
+Add Review
+![Add Review](screenshots/Add-Review.PNG)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Edit / Delete Review
+![Edit or Delete Review](screenshots/Edit-Review.PNG)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Technologies Used
+-----------------
+* HTML
+* CSS
+* JavaScript
+* React JS
+* node.js
+* mongodb
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Author
+------
+* Gerard Fajardo 
