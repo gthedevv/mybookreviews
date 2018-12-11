@@ -19,7 +19,7 @@ class UserPosts extends Component {
       return (
         this.props.reviews.list.map(item => (
           <tr key={item._id}>
-            <td><Link to={`/edit-review/${item._id}`}>{item.name}</Link></td>
+            <td><Link to={`/books/${item._id}`}>{item.name}</Link></td>
             <td>{item.author}</td>
             <td>{moment(item.createdAt).format('MM/DD/YY')}</td>
           </tr>
