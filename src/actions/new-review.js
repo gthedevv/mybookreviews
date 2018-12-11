@@ -17,7 +17,7 @@ export const newReviewSuccess = payload => ({
 const addNewReview = (review, history) => (dispatch, getState) =>{
   dispatch(newReviewRequest());
   const authToken = getState().auth.authToken;
-  fetch(`${API_BASE_URL}books/book`, {
+  fetch(`${API_BASE_URL}/books/book`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',

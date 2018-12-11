@@ -20,7 +20,7 @@ export const userReviewsError = error => ({
 export const getUserReviews = id => (dispatch, getState) => {
   dispatch(userReviewsRequest());
   const authToken = getState().auth.authToken;
-  fetch(`${API_BASE_URL}books/user_reviews/${id}`, 
+  fetch(`${API_BASE_URL}/books/user_reviews/${id}`, 
       {
       method: 'GET',
       headers: {

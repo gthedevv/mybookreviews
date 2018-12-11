@@ -37,7 +37,7 @@ export const deleteReviewError = () => ({
 export const editReview = (review, history) => (dispatch, getState) =>{
   dispatch(editReviewRequest());
   const authToken = getState().auth.authToken;
-  fetch(`${API_BASE_URL}books/book/${review.id}`, {
+  fetch(`${API_BASE_URL}/books/book/${review.id}`, {
     method: 'PUT',
     headers: {
       'content-type': 'application/json',
@@ -67,7 +67,7 @@ export const editReview = (review, history) => (dispatch, getState) =>{
 export const deleteReview = (bookId, history) => (dispatch, getState) =>{
     dispatch(deleteReviewRequest());
     const authToken = getState().auth.authToken;
-    return fetch(`${API_BASE_URL}books/book/${bookId}`, {
+    return fetch(`${API_BASE_URL}/books/book/${bookId}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
