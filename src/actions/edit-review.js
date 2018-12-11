@@ -51,8 +51,8 @@ export const editReview = (review, history) => (dispatch, getState) =>{
     .then(res => {
       dispatch(editReviewSuccess(res))
       dispatch(getBookWithReviewer(review.id))
-      history.push(`/books/${review.id}`)
     })
+    .then(() => history.push(`/books/${review.id}`))
     .catch(err => {
       const { reason, message, location } = err;
       if (reason === 'ValidationError') {
