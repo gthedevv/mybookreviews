@@ -17,6 +17,8 @@ The API used for this app holds all of the business logic needed in order for it
 * Adding / Editing / Deleting a review
 * Seeing other user's reviews
 
+Checkout the [API](https://github.com/gedfaj/book-review-api)
+
 App Gallery
 ------------
 
