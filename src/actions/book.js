@@ -19,7 +19,7 @@ export const bookError = error => ({
 
 export const getBookWithReviewer = id => dispatch => {
   dispatch(bookRequest());
-  fetch(`${API_BASE_URL}/books/book/${id}`)
+  fetch(`${API_BASE_URL}/books/book/${id}`, {mode: "cors"})
     .then(res => {
       if (!res.ok) {
         return Promise.reject(res.statusText);
@@ -28,7 +28,7 @@ export const getBookWithReviewer = id => dispatch => {
     })
     .then(data => {
       const { reviewerId } = data;
-      fetch(`${API_BASE_URL}/users/getReviewer/${reviewerId}`)
+      fetch(`${API_BASE_URL}/users/getReviewer/${reviewerId}`, {mode: "cors"})
         .then(res => {
           if (!res.ok) {
             return Promise.reject(res.statusText);
