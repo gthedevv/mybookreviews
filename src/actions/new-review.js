@@ -29,7 +29,6 @@ const addNewReview = (review, history) => (dispatch, getState) =>{
     .then(res => res.json())
     .then(res => {
       dispatch(newReviewSuccess(res))
-      console.log(res);
       history.push(`/books/${res.bookId}`)
     })
     .catch(err => {
