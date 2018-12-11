@@ -1,4 +1,5 @@
 import { SubmissionError } from 'redux-form';
+import { getBookWithReviewer } from './book'
 
 import API_BASE_URL from '../config';
 import normalizeResponseErrors from './utils';
@@ -49,6 +50,7 @@ export const editReview = (review, history) => (dispatch, getState) =>{
     .then(res => res.json())
     .then(res => {
       dispatch(editReviewSuccess(res))
+      dispatch(getBookWithReviewer(review.id))
       history.push(`/books/${review.id}`)
     })
     .catch(err => {
