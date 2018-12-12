@@ -1,4 +1,4 @@
-import { BOOK_REQUEST, BOOK_SUCCESS, BOOK_ERROR } from '../actions/book';
+import { BOOK_REQUEST, BOOK_SUCCESS, BOOK_ERROR, CLEAR_BOOK } from '../actions/book';
 
 const initialState = {
   data: null,
@@ -22,6 +22,8 @@ export default function reducer(state = initialState, action) {
       loading: false,
       error: action.error
     });
+  } else if (action.type === CLEAR_BOOK) {
+    return initialState;
   }
   return state;
 }

@@ -17,7 +17,13 @@ export const bookError = error => ({
   error
 });
 
+export const CLEAR_BOOK = 'CLEAR_BOOK';
+export const clearBook = () => ({
+    type: CLEAR_BOOK
+  });
+
 export const getBookWithReviewer = id => dispatch => {
+  dispatch(clearBook());
   dispatch(bookRequest());
   fetch(`${API_BASE_URL}/books/book/${id}`, {mode: "cors"})
     .then(res => {
