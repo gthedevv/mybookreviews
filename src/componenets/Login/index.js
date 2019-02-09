@@ -57,6 +57,11 @@ export class LoginForm extends React.Component {
                     Log in
                 </button>
             </form>
+            <div>
+                <h3>Test Account</h3>
+                <p>User: TestAccount@gmail.com</p>
+                <p>Password: 12345qwert</p>
+            </div>
           </div>
         );
     }
